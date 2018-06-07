@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # music-project
 
 > A music web app base on Vue.js which for better user exprience.
@@ -18,8 +17,3 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-=======
-# MusicProject
->>>>>>> afb495f474127c2f748c6cc05cd81866c102dbee
