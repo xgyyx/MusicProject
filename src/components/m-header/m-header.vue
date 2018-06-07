@@ -21,6 +21,7 @@ export default {}
     justify-content: space-between
     color: $color-theme
     background: $color-main
+    padding: 0.02rem 0
     .logo
       color: #fff
       line-height: .8rem
