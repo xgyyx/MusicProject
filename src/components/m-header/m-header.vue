@@ -24,12 +24,13 @@ export default {}
     padding: 0.02rem 0
     .logo
       color: #fff
-      line-height: .8rem
+      line-height: .84rem
       font-size: 0
       .icon-logo
-        font-size: .5rem
+        font-size: .56rem
         margin: 0 .1rem 0 .2rem
         vertical-align: middle
+        font-weight 500
     .search
       padding: .1rem
       flex: 1

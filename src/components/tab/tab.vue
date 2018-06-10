@@ -36,4 +36,5 @@ export default {}
       &.router-link-active
         .tab-link
           border-bottom: 0.04rem solid #fff
+          font-weight 500
 </style>
