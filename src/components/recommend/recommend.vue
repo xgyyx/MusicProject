@@ -1,13 +1,16 @@
 <template>
   <div class="recommend">
+    <div class="background"></div>
     <div class="recommend-content">
-      <slider>
-        <div v-for="item of recommends" :key="item.id">
-          <a href="item.linkUrl">
-            <img :src="item.picUrl" />
-          </a>
-        </div>
-      </slider>
+      <div v-if="recommends.length" class="slider-wrapper">
+        <slider>
+          <div v-for="item of recommends" :key="item.id">
+            <a href="item.linkUrl">
+              <img :src="item.picUrl" />
+            </a>
+          </div>
+        </slider>
+      </div>
     </div>
   </div>
 </template>
@@ -29,7 +32,6 @@ export default {
   methods: {
     _getRecommend () {
       getRecommend().then((result) => {
-        console.log(result)
         if (result.code === ERR_OK) {
           this.recommends = result.data.slider
         }
@@ -47,4 +49,12 @@ export default {
 
   .recommend
     width 100%
+    position: relative
+    .background
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      height: 2.4rem
+      background: $color-main
 </style>

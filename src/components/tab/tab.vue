@@ -22,12 +22,12 @@ export default {}
   .tab
     background: $color-main
     display: flex
-    height: .8rem
+    height: .9rem
     .tab-item
       flex: 0 0 33.3%
       text-align: center
       color: #fff
-      line-height: .8rem
+      line-height: .9rem
       font-size: 0
       .tab-link
         font-size: .28rem
