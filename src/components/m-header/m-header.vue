@@ -41,9 +41,13 @@ export default {}
         line-height: .6rem
         text-align: center
         vertical-align: center
-        border-radius: .3rem
+        border-radius: .06rem
+        background: $color-sub-main
         &:focus
           text-align: left
+          background: #fff
+        &::placeholder
+          color: $color-main-font
     .mine
       color: #fff
       line-height: .8rem

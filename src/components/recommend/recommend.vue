@@ -4,7 +4,7 @@
     <div class="recommend-content">
       <div v-if="recommends.length" class="slider-wrapper">
         <slider>
-          <div v-for="item of recommends" :key="item.id">
+          <div class="recommend-swiper-item" v-for="item of recommends" :key="item.id">
             <a href="item.linkUrl">
               <img :src="item.picUrl" />
             </a>
@@ -17,7 +17,7 @@
 
 <script type="text/ecmascript-6">
 import Slider from 'base/slider/slider'
-import {getRecommend} from 'api/recommend'
+import {getRecommend, getPlayList} from 'api/recommend'
 import {ERR_OK} from 'api/config'
 
 export default {
@@ -28,12 +28,21 @@ export default {
   },
   created () {
     this._getRecommend()
+    this._getPlayList()
   },
   methods: {
     _getRecommend () {
       getRecommend().then((result) => {
         if (result.code === ERR_OK) {
           this.recommends = result.data.slider
+        }
+      })
+    },
+    _getPlayList () {
+      getPlayList().then((result) => {
+        console.log(result)
+        if (result.code === ERR_OK) {
+          console.log(result.data)
         }
       })
     }
@@ -46,7 +55,8 @@ export default {
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
-
+  .recommend >>> img
+    border-radius: .06rem
   .recommend
     width 100%
     position: relative
@@ -57,4 +67,6 @@ export default {
       right: 0
       height: 2.4rem
       background: $color-main
+      .recommend-swiper-item
+        border-radius: .1rem
 </style>
