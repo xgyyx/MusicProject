@@ -11,6 +11,19 @@
           </div>
         </slider>
       </div>
+      <div class="recommend-list">
+        <div class="list-title">热门歌单</div>
+        <ul class="playlist-table">
+          <li v-for="item of playList" :key="item.dissid" class="playlist-item">
+            <div class="playlist-icon">
+              <img :src="item.imgurl" class="playlist-icon-img" />
+              <div class="playlist-listennum">{{_changeNum(item.listennum)}}</div>
+              <div class="playlist-creator">{{item.creator.name}}</div>
+            </div>
+            <div class="playlist-text">{{item.dissname}}</div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -23,7 +36,8 @@ import {ERR_OK} from 'api/config'
 export default {
   data () {
     return {
-      recommends: []
+      recommends: [],
+      playList: []
     }
   },
   created () {
@@ -40,11 +54,17 @@ export default {
     },
     _getPlayList () {
       getPlayList().then((result) => {
-        console.log(result)
         if (result.code === ERR_OK) {
-          console.log(result.data)
+          this.playList = result.data.list
         }
       })
+    },
+    _changeNum (num) {
+      let numString = num.toString()
+      if (numString.length <= 5) {
+        return num
+      }
+      return numString.substring(0, numString.length - 4) + '万'
     }
   },
   components: {
@@ -55,7 +75,9 @@ export default {
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
-  .recommend >>> img
+  @import "~common/stylus/mixin"
+
+  .slider-wrapper >>> img
     border-radius: .06rem
   .recommend
     width 100%
@@ -69,4 +91,41 @@ export default {
       background: $color-main
       .recommend-swiper-item
         border-radius: .1rem
+    .recommend-list
+      width: 100%
+      .list-title
+        height: 1rem
+        line-height: 1rem
+        padding-left: .2rem
+        font-size: .32rem
+      .playlist-table
+        box-sizing: border-box
+        padding: 0 .1rem
+        .playlist-item
+          float: left
+          width: 33.3%
+          box-sizing: border-box
+          padding: 0 .1rem
+          .playlist-icon
+            position: relative
+            color: #fff
+            .playlist-icon-img
+              width: 100%
+              display: block
+              background: #ccc
+            .playlist-listennum
+              position: absolute
+              top: .1rem
+              right: .1rem
+              font-size: .24rem
+            .playlist-creator
+              position: absolute
+              left: .1rem
+              bottom: .1rem
+              font-size: .22rem
+              no-wrap()
+          .playlist-text
+            font-size: .26rem
+            height: .6rem
+            padding: .1rem .02rem
 </style>
