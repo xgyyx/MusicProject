@@ -121,10 +121,9 @@ export default {
 
   .slider
     min-height: .02rem
-    position: relative
     overflow: hidden
+    position: relative
     .slider-group
-      position: relative
       overflow: hidden
       white-space: nowrap
       .slider-item
