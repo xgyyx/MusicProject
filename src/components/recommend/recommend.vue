@@ -17,7 +17,7 @@
           <ul class="playlist-table">
             <li v-for="item of playList" :key="item.dissid" class="playlist-item">
               <div class="playlist-icon">
-                <img :src="item.imgurl" class="playlist-icon-img" />
+                <img v-lazy="item.imgurl" class="playlist-icon-img" />
                 <div class="playlist-listennum">{{_changeNum(item.listennum)}}</div>
                 <div class="playlist-creator">{{item.creator.name}}</div>
               </div>
@@ -25,6 +25,9 @@
             </li>
           </ul>
         </div>
+      </div>
+      <div class="loading-container" v-show="!playList.length">
+        <loading></loading>
       </div>
     </scroll>
   </div>
@@ -35,6 +38,7 @@ import Slider from 'base/slider/slider'
 import {getRecommend, getPlayList} from 'api/recommend'
 import {ERR_OK} from 'api/config'
 import Scroll from 'base/scroll/scroll'
+import Loading from 'base/loading/loading'
 
 export default {
   data () {
@@ -79,7 +83,8 @@ export default {
   },
   components: {
     Slider,
-    Scroll
+    Scroll,
+    Loading
   }
 }
 </script>
@@ -109,6 +114,8 @@ export default {
           background: $color-main
           .recommend-swiper-item
             border-radius: .1rem
+            img
+              display: block
         .recommend-list
           width: 100%
           .list-title
@@ -132,7 +139,7 @@ export default {
                 .playlist-icon-img
                   width: 100%
                   display: block
-                  background: #ccc
+                  background: #fff
                 .playlist-listennum
                   position: absolute
                   top: .1rem
@@ -148,4 +155,8 @@ export default {
                 font-size: .26rem
                 height: .6rem
                 padding: .1rem .02rem
+      .loading-container
+        position: absolute
+        width: 100%
+        height: 50%
 </style>
