@@ -10,7 +10,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: '正在加载...'
+      default: '正在加载'
     }
   }
 }
@@ -23,8 +23,8 @@ export default {
     width: 100%
     text-align: center
     .loading-img
-      width: .48rem
-      height: .48rem
+      width: .4rem
+      height: .4rem
     .loading-desc
       line-height: .4rem
       color: $color-main

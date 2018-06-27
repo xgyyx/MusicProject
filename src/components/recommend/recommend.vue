@@ -159,4 +159,5 @@ export default {
         position: absolute
         width: 100%
         height: 50%
+        top: 2rem
 </style>
