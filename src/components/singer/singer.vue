@@ -64,19 +64,23 @@ export default {
       // 数组排序
       let hot = []
       let alphabet = []
+      let other = []
       for (let key in map) {
         let val = map[key]
         if (val.title.match(/[a-zA-Z]/)) {
           alphabet.push(val)
         } else if (val.title === HOT_NAME) {
           hot.push(val)
+        } else {
+          val.title = '#'
+          other.push(val)
         }
       }
       alphabet.sort((a, b) => {
         return a.title.charCodeAt(0) - b.title.charCodeAt(0)
       })
 
-      return hot.concat(alphabet)
+      return hot.concat(alphabet).concat(other)
     }
   }
 }

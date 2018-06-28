@@ -11,6 +11,11 @@
         </ul>
       </li>
     </ul>
+    <div class="list-Alphabat">
+      <ul>
+        <li v-for="item of shortcutList" class="list-Alphabat-item" :key="item">{{item}}</li>
+      </ul>
+    </div>
   </scroll>
 </template>
 
@@ -28,6 +33,13 @@ export default {
   },
   components: {
     Scroll
+  },
+  computed: {
+    shortcutList () {
+      return this.data.map((group) => {
+        return group.title.substr(0, 1)
+      })
+    }
   }
 }
 </script>
@@ -59,6 +71,19 @@ export default {
         .singer-name
           width: 100%
           line-height: 1rem
-          margin: 0 .4rem
+          margin: 0 .6rem 0 .4rem
           border-bottom .02rem solid #eee
+    .list-Alphabat
+      position: absolute
+      top: 0
+      right: 0
+      bottom: 0
+      width: .6rem
+      display: flex
+      flex-direction: column
+      justify-content: center
+      .list-Alphabat-item
+        text-align: center
+        line-height: .4rem
+        color: $color-main
 </style>
