@@ -21,3 +21,33 @@ export function getData (el, name, fun) {
     return el.getAttribute(name)
   }
 }
+
+let elementStyle = document.createElement('div').style
+function vendorOld () {
+  let browsersCompatible = {
+    webkit: 'webkitTransform',
+    Moz: 'MozTransform',
+    O: 'OTransform',
+    ms: 'msTransform',
+    standard: 'transform'
+  }
+
+  for (let key in browsersCompatible) {
+    if (elementStyle[browsersCompatible[key]] !== undefined) {
+      return key
+    }
+  }
+
+  return false
+}
+
+export function prefixStyleforJS (style) {
+  if (vendorOld() === false) {
+    return false
+  }
+  if (vendorOld() === 'standard') {
+    return style
+  }
+
+  return vendorOld() + style.charAt(0).toUpperCase() + style.substr(1)
+}
